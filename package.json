@@ -1,0 +1,12 @@
+{
+  "name": "manager1923",
+  "version": "0.0.1",
+  "description": "Discord bot for Battlefield 1 Server Management",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "FaruQ_Q",
+  "license": "ACSLv1.4"
+}
