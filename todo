@@ -1,0 +1,12 @@
+# Plans for now
+~ Write methods and apis
+~ Install node, packages and add them .gitignore file.
+~ Create requertments files
+~ Create Auth and session system
+~ Create main discord codes and add ping for test
+~ Create private (form style) sid/remid saving system per server
+~ Global other codes. (too many code and im lazy for explaining all)
+### Future plans
+~ Add slash commands + prefix commands for same commands
+~ Add bind/prefix system (per server and per user)
+~ Add multilanguage 
