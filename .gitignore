@@ -8,3 +8,4 @@ logs/
 .env
 notes/blaze-methods.txt
 notes/sparta-methods.txt
+!.gitkeep
