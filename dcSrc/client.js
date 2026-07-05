@@ -1,4 +1,4 @@
-const {Client, GatewayIntentBits, Collection} = require("discord.js");
+const {Client, GatewayIntentBits, Collection, Partials, Activity, ActivityType} = require("discord.js");
 const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
@@ -7,7 +7,7 @@ const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.MessageContent
     ],
     partials: [Partials.GuildMember],
     presence: {
@@ -24,17 +24,28 @@ client.buttons = new Collection();
 client.selectMenus = new Collection();
 client.modals = new Collection();
 
-const commandsPath = path.join(__dirname, "commands");
+// --- DEDEKTİF MODLU COMMANDS HANDLER ---
+const commandsPath = path.join(__dirname, 'commands');
+
 if (fs.existsSync(commandsPath)) {
-    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
-    for (const file of commandFiles) {
-        const filepath = path.join(commandsPath, file);
-        const command = require(filepath);
-        if ('data' in command && 'execute' in command.data) {
+    const commandFiles = fs.readdirSync(commandsPath);
+    const jsFiles = commandFiles.filter(file => file.endsWith('.js'));
+
+    for (const file of jsFiles) {
+        const filePath = path.join(commandsPath, file);
+        const command = require(filePath);
+
+        if ('data' in command && 'execute' in command) {
             client.commands.set(command.data.name, command);
+            console.log(`✅ [DEDEKTİF] ${file} başarıyla hafızaya yüklendi! Komut Adı: /${command.data.name}`);
+        } else {
+            console.log(`❌ [DEDEKTİF] ${file} geçerli komut yapısına (data/execute) sahip değil, ATLANDI!`);
         }
     }
+} else {
+    console.log(`🚨 [DEDEKTİF] KRİTİK HATA: ${commandsPath} klasörü diskte fiziksel olarak yok!`);
 }
+console.log(`\n=================================\n`);
 
 const componentsPath = path.join(__dirname, "components");
 if (fs.existsSync(componentsPath)) {

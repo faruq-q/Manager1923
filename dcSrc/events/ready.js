@@ -1,7 +1,7 @@
 const {REST, Routes} = require('discord.js');
 
 module.exports = {
-    name: 'ready',
+    name: 'clientReady',
     once: true,
     async execute(client) {
         console.log(`Bot is ready. Logged in as ${client.user.tag}`);
@@ -15,7 +15,7 @@ module.exports = {
             console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
             await rest.put(
-                Routes.applicationCommands(client.user.id),
+                Routes.applicationCommands(client.user.id, process.env.TEST_GUILD_ID),
                 { body: commands },
             );
             console.log(`Successfully reloaded ${commands.length} application (/) commands.`);
