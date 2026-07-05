@@ -1,8 +1,6 @@
 node_modules/
 config.json
-apis/blazeAPI.json
-apis/spartaAPI.json
-apis/gametoolsAPI.json
+apis/*
 database/*
 logs/*
 .env

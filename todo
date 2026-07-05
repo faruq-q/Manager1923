@@ -1,6 +1,6 @@
 # Plans for now
-~ Write methods and apis
-~ Install node, packages and add them .gitignore file.
+~ Write methods/endpoints ~~and apis~~
+~ ~~Install node, packages and add them .gitignore file.~~
 ~ Create Auth and session system
 ~ Create main discord codes and add ping for test
 ~ Create private (form style) sid/remid saving system per server
