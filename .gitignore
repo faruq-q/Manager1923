@@ -3,8 +3,8 @@ config.json
 apis/blazeAPI.json
 apis/spartaAPI.json
 apis/gametoolsAPI.json
-database/
-logs/
+database/*
+logs/*
 .env
 notes/blaze-methods.txt
 notes/sparta-methods.txt
