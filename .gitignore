@@ -1,7 +1,7 @@
 node_modules/
 config.json
 apis/*
-database/*
+
 logs/*
 .env
 notes/blaze-methods.txt
