@@ -1,7 +1,9 @@
 node_modules/
 config.json
-apis/*
-
+apis/BlazeAPI.js
+apis/gametoolsAPI.js
+apis/spartaAPI.js
+apis/eaAuth.js
 logs/*
 .env
 notes/blaze-methods.txt
