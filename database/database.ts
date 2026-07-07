@@ -25,7 +25,13 @@ export interface ServerConfig {
     kick_channel_id: string | null;
     server_updates_channel_id: string | null;
     player_reports_channel_id: string | null;
-    viewer_role_ids: string[] | null; 
+    viewer_role_ids: string[] | null;
+    updated_at: Date;
+    created_at: Date;
+    setup_steps: number | null;
+    vban_reason: string | null;
+    ban_reason: string | null;
+    kick_reason: string | null; 
 }
 
 // Function to initialize and verify database tables
@@ -35,7 +41,7 @@ export async function initDatabase() {
         CREATE TABLE IF NOT EXISTS server_configs (
             guild_id VARCHAR(30) PRIMARY KEY,
             setup_user_id VARCHAR(30) NOT NULL,
-            bot_name VARCHAR(255) DEFAULT 'Manager1923',
+            bot_name VARCHAR(50) DEFAULT 'Manager1923',
             ea_sid TEXT NOT NULL,
             ea_remid TEXT NOT NULL,
             game_id VARCHAR(30),
@@ -46,7 +52,12 @@ export async function initDatabase() {
             server_updates_channel_id VARCHAR(30),
             player_reports_channel_id VARCHAR(30),
             viewer_role_ids TEXT[],
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            setup_steps INTEGER DEFAULT 0,
+            vban_reason VARCHAR(30) DEFAULT 'Kicked from VBAN',
+            ban_reason VARCHAR(30) DEFAULT 'Banned',
+            kick_reason VARCHAR(30) DEFAULT 'Breaking Rules'
         );
     `;
 

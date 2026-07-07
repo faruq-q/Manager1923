@@ -4,28 +4,40 @@ import { db } from '../../../database/database';
 export const customId = 'managerSetupModal';
 
 export async function execute(interaction: ModalSubmitInteraction, client: customClient) {
-    // Defer reply immediately as ephemeral to bypass the 3-second constraint
     await interaction.deferReply({ flags: [MessageFlags.Ephemeral] });
 
-    // Parse credentials submitted from the modal UI text fields
     const botName = interaction.fields.getTextInputValue('botNameModal') || 'Manager1923';
     const sid = interaction.fields.getTextInputValue('botSidModal');
     const remid = interaction.fields.getTextInputValue('botRemidModal');
-    
-    // Extract Guild ID and the Setup Manager's Discord ID
     const guildId = interaction.guildId;
     const setupUserId = interaction.user.id;
+    
+    const setupSteps = 1; 
 
     try {
-        // Write or Update records utilizing an UPSERT pattern
         const queryText = `
-            INSERT INTO server_configs (guild_id, setup_user_id, bot_name, ea_sid, ea_remid, updated_at)
-            VALUES ($1, $2, $3, $4, $5, NOW())
+            INSERT INTO server_configs (guild_id, setup_user_id, bot_name, ea_sid, ea_remid, created_at, updated_at, setup_steps)
+            VALUES ($1, $2, $3, $4, $5, NOW(), $6)
             ON CONFLICT (guild_id) 
-            DO UPDATE SET setup_user_id = $2, bot_name = $3, ea_sid = $4, ea_remid = $5, updated_at = NOW();
+            DO UPDATE SET 
+                setup_user_id = EXCLUDED.setup_user_id, 
+                bot_name = EXCLUDED.bot_name, 
+                ea_sid = EXCLUDED.ea_sid, 
+                ea_remid = EXCLUDED.ea_remid, 
+                setup_steps = EXCLUDED.setup_steps,
+                updated_at = NOW(); 
         `;
         
-        await db.query(queryText, [guildId, setupUserId, botName, sid, remid]);
+        const queryParams = [
+            guildId,       // $1
+            setupUserId,   // $2
+            botName,       // $3
+            sid,           // $4
+            remid,         // $5
+            setupSteps     // $15
+        ];
+
+        await db.query(queryText, queryParams);
 
         const successEmbed = new EmbedBuilder()
             .setColor('#2ECC71')
@@ -56,7 +68,6 @@ export async function execute(interaction: ModalSubmitInteraction, client: custo
         if (interaction.deferred || interaction.replied) {
             await interaction.editReply({ content: failureMessage });
         } else {
-            // FIXED: Changed from editReply to reply for the non-deferred fallback path
             await interaction.reply({ content: failureMessage, flags: [MessageFlags.Ephemeral] });
         }
     }
