@@ -1,7 +1,7 @@
 .env
 node_modules/
+!.gitkeep
 config.json
-bfSrc/apis/*
 bfSrc/apis/gametoolsAPI.js
 bfSrc/apis/spartaAPI.js
 bfSrc/apis/blazeAPI.js
@@ -9,4 +9,3 @@ bfSrc/apis/eaAuth.js
 logs/*
 notes/blaze-methods.txt
 notes/sparta-methods.txt
-!.gitkeep
