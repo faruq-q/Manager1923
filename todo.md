@@ -4,11 +4,11 @@
 - [ ] Create discord interactions ~~and database~~ system 
 - [x] ~~Create private (form style) sid/remid saving system per server~~
 - [ ] Create advanced step-by-step setup command. 
-    -  ⨽ [x] add sid&remid, 
-    -  ⨽ [] add bf1 server(s),
-    -  ⨽ [] add Log Channels option
-    -  ⨽ [] add Role option for different perms (only kick perm, ban&kick perm, server manager perm)
-    -  ⨽ [] add Report player system setup option
+    -  ⨽  ~~add sid&remid,~~ 
+    -  ⨽  add bf1 server(s),
+    -  ⨽  add Log Channels option
+    -  ⨽  add Role option for different perms (only kick perm, ban&kick perm, server manager perm)
+    -  ⨽  add Report player system setup option
     -  ⨽ ...no more for now
 - [ ] Create Auth and session and connect to database and discord system
 - [ ] Global other codes. (too many code and im lazy for explaining all)
