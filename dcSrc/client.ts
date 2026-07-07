@@ -1,9 +1,13 @@
-const {Client, GatewayIntentBits, Collection, Partials, Activity, ActivityType} = require("discord.js");
-const fs = require("fs");
-const path = require("path");
-require("dotenv").config();
+import dotenv from 'dotenv';
 
-const client = new Client({
+dotenv.config();
+import {Client, GatewayIntentBits, Collection, ClientOptions, Partials, Activity, ActivityType, CollectorEventTypes} from 'discord.js';
+import { initDatabase } from '../database/database';
+import { customClient } from './structures/CustomClient';
+import fs from 'fs';
+import path from 'path';
+
+export const client = new customClient({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
@@ -13,25 +17,20 @@ const client = new Client({
     presence: {
         activities: [{ 
             name: 'Manager1923 | Battlefield 1 Server Management Tool.', 
-            type: ActivityType.GAME
+            type: ActivityType.Competing
         }],
-    status: 'idle'
+    status: 'idle',
   }
 });
-
-client.commands = new Collection();
-client.buttons = new Collection();
-client.selectMenus = new Collection();
-client.modals = new Collection();
 
 // --- DEDEKTİF MODLU COMMANDS HANDLER ---
 const commandsPath = path.join(__dirname, 'commands');
 
 if (fs.existsSync(commandsPath)) {
     const commandFiles = fs.readdirSync(commandsPath);
-    const jsFiles = commandFiles.filter(file => file.endsWith('.js'));
+    const tsFiles = commandFiles.filter(file => file.endsWith('.ts'));
 
-    for (const file of jsFiles) {
+    for (const file of tsFiles) {
         const filePath = path.join(commandsPath, file);
         const command = require(filePath);
 
@@ -54,15 +53,15 @@ if (fs.existsSync(componentsPath)) {
     subFolders.forEach(subFolder => {
         const folderPath = path.join(componentsPath, subFolder);
         if (fs.existsSync(folderPath)) {
-            const files = fs.readdirSync(folderPath).filter(file => file.endsWith(".js"));
+            const files = fs.readdirSync(folderPath).filter(file => file.endsWith(".ts"));
 
             for (const file of files) {
                 const filepath = path.join(folderPath, file);
                 const component = require(filepath);
 
-                if (subFolder === 'buttons') client.buttons.set(component.data.customId, component);
-                if (subFolder === 'selectMenus') client.selectMenus.set(component.data.customId, component);
-                if (subFolder === 'modals') client.modals.set(component.data.customId, component);
+                if (subFolder === 'buttons') client.buttons.set(component.customId, component);
+                if (subFolder === 'selectMenus') client.selectMenus.set(component.customId, component);
+                if (subFolder === 'modals') client.modals.set(component.customId, component);
 
             }
         }
@@ -71,7 +70,7 @@ if (fs.existsSync(componentsPath)) {
 
 const eventsPath = path.join(__dirname, 'events');
 if (fs.existsSync(eventsPath)) {
-    const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+    const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.ts'));
     for (const file of eventFiles) {
         const filePath = path.join(eventsPath, file);
         const event = require(filePath);
@@ -83,6 +82,8 @@ if (fs.existsSync(eventsPath)) {
     }
 }
 
-client.login(process.env.DISCORD_TOKEN);
-
-module.exports = client;
+initDatabase().then(() => {
+    client.login(process.env.DISCORD_TOKEN);
+}).catch((err) => {
+    console.error('🚨 [CORE] Failed to start bot due to database error:', err);
+});

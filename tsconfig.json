@@ -3,14 +3,21 @@
     "target": "ES2022",
     "module": "CommonJS",
     "lib": ["ES2022"],
-    "allowJs": true,                  // Eski .js dosyalarının da çalışmasına izin verir
-    "checkJs": false,                 // Eski .js dosyalarında katı hata denetimi yapmaz (bizi yormaz)
-    "strict": true,                   // Yeni yazacağımız .ts dosyalarında tam güvenlik sağlar
-    "noImplicitAny": false,           // "any" tipi için bizi çok sıkıştırmaz, esneklik tanır
-    "esModuleInterop": true,          // require ve import sistemini birbiriyle uyumlu hale getirir
-    "skipLibCheck": true,             // Kütüphanelerin içindeki hazır kodları denetlerken vakit kaybetmez
-    "forceConsistentCasingInFileNames": true
+    "allowJs": true,                  // its giving work permit for old .js files 
+    "checkJs": false,                 // its not make force debug check for old .js files
+    "strict": true,                   // giving security for new .ts files
+    "noImplicitAny": false,           // its doesnt force to us for "any" type
+    "esModuleInterop": true,          // its making compatible to require and import for each other
+    "skipLibCheck": true,             // its doesnt check codes in library and making system faster (for coding)
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",               // compilated all .js files is moving /dist folder, original files staying safe
+    "rootDir": "./"                   // creating dist folder in main project folder
   },
-  "include": ["**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*"                            // add all files in the project
+  ],
+  "exclude": [
+    "node_modules",                   // search modules
+    "dist"                            // its doesnt research already compilated files and, saving system from infinite loop
+  ]
 }
