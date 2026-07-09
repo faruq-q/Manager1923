@@ -10,6 +10,6 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     const latency = think.createdTimestamp - interaction.createdTimestamp;
 
     await interaction.editReply({
-        content: `🏓 Pong! \n\nAPI Latency: ${latency}ms\nBot Latency: ${Math.round(interaction.client.ws.ping)}ms`,
+        content: `🏓 Pong! ${interaction.user.tag} \n\nAPI Latency: ${latency}ms\nBot Latency: ${Math.round(interaction.client.ws.ping)}ms`,
     });
 };
