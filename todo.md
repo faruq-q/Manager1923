@@ -5,6 +5,7 @@
 - [x] ~~Create private (form style) sid/remid saving system per server~~
 - [ ] Create advanced step-by-step setup command. 
     -  ⨽  ~~add sid&remid,~~ 
+    -  ⨽⨽ create embeds and buttons for every step
     -  ⨽  add bf1 server(s),
     -  ⨽  add Log Channels option
     -  ⨽  add Role option for different perms (only kick perm, ban&kick perm, server manager perm)
@@ -17,10 +18,6 @@
 - [ ] add Visual proof option for vban/ban/kick
 - [ ] add vote kick system for players
 - ...no more for now
-
-## Next steps
-- [ ] Upgrade setup command 
-- [ ] ....
 
 ### Future plans
 - [ ] Install/make asset files.
