@@ -15,7 +15,13 @@
 - [ ] Ban/kick system for Discord server
 - [ ] Vban system for bf1
 - [ ] add Visual proof option for vban/ban/kick
+- [ ] add vote kick system for players
 - ...no more for now
+
+## Next steps
+- [ ] Upgrade setup command 
+- [ ] ....
+
 ### Future plans
 - [ ] Install/make asset files.
 - [ ] Upgrade render image system for playerlist.
