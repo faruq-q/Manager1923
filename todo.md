@@ -16,7 +16,7 @@
 - [ ] Ban/kick system for Discord server
 - [ ] Vban system for bf1
 - [ ] add Visual proof option for vban/ban/kick
-- [ ] add vote kick system for players
+- [ ] add vote kick system for players. Active kick pools, select pool and give vote, vote with eaid, cancel the vote (only admin), last 10 vote kick
 - ...no more for now
 
 ### Future plans
