@@ -1,13 +1,11 @@
 import { 
     EmbedBuilder,
-    ButtonInteraction, 
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle
+    ButtonInteraction,
+    MessageFlags
 } from 'discord.js';
-
-// REQUIRED: Matches the ID in the button builder
-export const customId = 'btn_help_setup';
+import {db} from '../../../database/database';
+import { backButtonRow, backServerButtonRow } from '../embeds/setupEmbeds';
+export const setupButtonIds = ['btn_help_setup', 'btn_help_server_setup'];
 
 export const helpEmbed = new EmbedBuilder()
     .setColor('#3498DB')
@@ -24,29 +22,43 @@ export const helpEmbed = new EmbedBuilder()
     .setFooter({ text: 'Manager1923 | Safe and Encrypted Session Management' })
     .setTimestamp();
 
-// Create the return button (Home Page)
-export const backButtonRow = new ActionRowBuilder<ButtonBuilder>()
-    .addComponents(
-        new ButtonBuilder()
-            .setCustomId('btn_start_setup')
-            .setLabel('Start Setup')
-            .setEmoji('⚙️')
-            .setStyle(ButtonStyle.Success),
-        new ButtonBuilder()
-            .setCustomId('btn_home_setup')
-            .setLabel('Setup Home Page')
-            .setEmoji('🏠')
-            .setStyle(ButtonStyle.Primary)
-    );
+export const helpGameIDEmbed = new EmbedBuilder()
+    .setColor('#3498DB')
+    .setTitle('How to Retrieve Battlefield 1 Server GameID?')
+    .setThumbnail('https://i.imgur.com/d1RbcCd.jpeg')
+    .setDescription('To manage server, Mamanger1923 need Server GameID(s) for use commands for usage.')
+    .addFields(
+        { name: '🌐 1. Go to Gametools', value: 'Open any browser and go to [gametools.network](https://gametools.network/servers?game=bf1&region=all&platform=pc&limit=10&searchtype=servername).' },
+        { name: '🛠️ 2. Search for your server(s)', value: 'Use search bar in website and search for your server(s) with name.' },
+        { name: '🔑 4. Copy Values', value: 'Find and click your server(s). Copy numbers in website link (bf/gameid/**123456789**/) from the browser search bar.' },
+        { name: '❤️ Thanks to Gametools', value: 'Thank you Arcur.'}
+    )
+    .setFooter({ text: 'Manager1923 | find GameID steps' })
+    .setTimestamp();
 
-// EXPLICITLY NO 'client' PARAMETER AS REQUESTED
 export async function execute(interaction: ButtonInteraction) {
+    const dbget = await db.query('SELECT setup_steps FROM server_configs WHERE guild_id = $1', [interaction.guildId]);
+    const currentStep = dbget.rows[0].setup_steps;
     try {
-        await interaction.update({ 
-            embeds: [helpEmbed],
-            components: [backButtonRow] // Add the back button to the message
-        });
+        if (currentStep === 1) {
+            return await interaction.update({
+                embeds: [helpEmbed],
+                components: [backButtonRow]
+            })
+        } else if (currentStep === 2){
+            return await interaction.update({
+                embeds: [helpGameIDEmbed],
+                components: [backServerButtonRow]
+            })
+        } else {
+            return await interaction.reply({
+                content: 'Unexpected setup step. Please start the setup process again.',
+                components: [],
+                flags: [MessageFlags.Ephemeral]
+            })
+        }
     } catch (error) {
-        console.error('Error updating to help embed:', error);
+        console.error('Error sending embed:', error);
+        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
 }
