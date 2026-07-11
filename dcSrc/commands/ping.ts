@@ -5,11 +5,13 @@ export const data = new SlashCommandBuilder()
     .setDescription('Replies with Pong!');
 
 export async function execute(interaction: ChatInputCommandInteraction) {
-    const think = await interaction.deferReply();
-
-    const latency = think.createdTimestamp - interaction.createdTimestamp;
+    try {
+        const wsPing = interaction.client.ws.ping;
 
     await interaction.editReply({
-        content: `🏓 Pong! ${interaction.user.tag} \n\nAPI Latency: ${latency}ms\nBot Latency: ${Math.round(interaction.client.ws.ping)}ms`,
+        content: `🏓 Pong! <@${interaction.user.id}> \nBot Latency: ${Math.round(wsPing)}ms`,
     });
+    } catch (error) {
+        return await interaction.editReply({ content: 'There was an error trying to execute this command!' }); 
+    }
 };
