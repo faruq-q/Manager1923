@@ -17,7 +17,7 @@ export async function execute(interaction: ModalSubmitInteraction, client: custo
     try {
         const queryText = `
             INSERT INTO server_configs (guild_id, setup_user_id, bot_name, ea_sid, ea_remid, created_at, updated_at, setup_steps)
-            VALUES ($1, $2, $3, $4, $5, NOW(), $6)
+            VALUES ($1, $2, $3, $4, $5, NOW(), NOW(), $6)
             ON CONFLICT (guild_id) 
             DO UPDATE SET 
                 setup_user_id = EXCLUDED.setup_user_id, 
@@ -34,7 +34,7 @@ export async function execute(interaction: ModalSubmitInteraction, client: custo
             botName,       // $3
             sid,           // $4
             remid,         // $5
-            setupSteps     // $15
+            setupSteps     // $7
         ];
 
         await db.query(queryText, queryParams);
@@ -58,7 +58,7 @@ export async function execute(interaction: ModalSubmitInteraction, client: custo
             .setFooter({ text: 'Manager1923 | Phase 1/8 Completed' })
             .setTimestamp();
 
-        await interaction.editReply({ embeds: [successEmbed] });
+        await interaction.editReply({ embeds: [successEmbed], flags: [] });
 
     } catch (error) {
         console.error('Database configuration write error:', error);
@@ -66,9 +66,9 @@ export async function execute(interaction: ModalSubmitInteraction, client: custo
         const failureMessage = '❌ **Database Error!** There was an unexpected error writing the configuration to our database. Please check your system logs.';
         
         if (interaction.deferred || interaction.replied) {
-            await interaction.editReply({ content: failureMessage });
+            await interaction.editReply({ content: failureMessage, flags: [] });
         } else {
-            await interaction.reply({ content: failureMessage, flags: [MessageFlags.Ephemeral] });
+            await interaction.reply({ content: failureMessage, flags: [] });
         }
     }
 }

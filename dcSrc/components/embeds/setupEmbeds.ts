@@ -18,12 +18,11 @@ export const getWelcomeEmbed = (interaction: setupInteraction) => {
           '**4.** Designate a **Kick-Only** role for basic in-game moderators.\n' +
           '**5.** Designate a **Ban & Kick** role for senior in-game moderators.\n' +
           '**6.** Designate a **Server Config Manager** role for bot settings.\n' +
-          '**7.** Toggle and configure the player report system (special logger & staff role).\n' +
-          '**8.** Additional customizable options to fit your community style.'
+          '**7.** Toggle and configure the player report system (special logger & staff role).\n'
         },
         { name: 'ℹ️ Getting Started', value: 'Please click the **Start Setup** button below to provide initial credentials. If you do not know how to obtain your SID and REMID, click the **Need Help?** button.' }
     )
-    .setFooter({ text: interaction.user.tag, iconURL: interaction.user.displayAvatarURL() })
+    .setFooter({ text: `${interaction.user.tag}   |  Step 1/5`, iconURL: interaction.user.displayAvatarURL() })
     .setTimestamp();
 
 }
@@ -38,7 +37,7 @@ export const getServerSetupEmbed = (interaction: setupInteraction) => {
         .addFields(
             { name: '📝 Example Input', value: '`"ServerName1 - 7/24 Sinai - CQ","ServerName2 - All Maps #12345678", "1234567890"`' }
         )
-        .setFooter({ text: interaction.user.tag, iconURL: interaction.user.displayAvatarURL()})
+        .setFooter({ text: `${interaction.user.tag}  |  Step 2/5`, iconURL: interaction.user.displayAvatarURL()})
         .setTimestamp();
 }
 
@@ -59,7 +58,7 @@ export const getLogChannelOption = (interaction: setupInteraction) => {
                 'Vote Kick Logs: `#bf1-votekicks`'
             }
         )
-        .setFooter({ text: interaction.user.tag, iconURL: interaction.user.displayAvatarURL()})
+        .setFooter({ text: `${interaction.user.tag}  |  Step 3/5`, iconURL: interaction.user.displayAvatarURL()})
         .setTimestamp();
     
 }
@@ -80,7 +79,7 @@ export const getChannelOption = (interaction: setupInteraction) => {
                 'Report Inspecter: `@inspecter`\n'
             }
         )
-        .setFooter({ text: interaction.user.tag, iconURL: interaction.user.displayAvatarURL()})
+        .setFooter({ text: `${interaction.user.tag}  |  Step 4/5`, iconURL: interaction.user.displayAvatarURL()})
         .setTimestamp();
     
 }
@@ -101,7 +100,7 @@ export const getReportOption = (interaction: setupInteraction) => {
                 'Report Inspecter: `@inspecter`\n'
             }
         )
-        .setFooter({ text: interaction.user.tag, iconURL: interaction.user.displayAvatarURL()})
+        .setFooter({ text: `${interaction.user.tag}  |  Step 5/5`, iconURL: interaction.user.displayAvatarURL()})
         .setTimestamp();
     
 }
@@ -170,7 +169,7 @@ export const backServerButtonRow = new ActionRowBuilder<ButtonBuilder>()
     .addComponents(
         new ButtonBuilder()
             .setCustomId('btn_start_server_setup')
-            .setLabel('Start Setup')
+            .setLabel('Start Server(s) Setup')
             .setEmoji('⚙️')
             .setStyle(ButtonStyle.Success),
         new ButtonBuilder()

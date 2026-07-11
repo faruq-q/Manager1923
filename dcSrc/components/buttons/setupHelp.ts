@@ -5,7 +5,7 @@ import {
 } from 'discord.js';
 import {db} from '../../../database/database';
 import { backButtonRow, backServerButtonRow } from '../embeds/setupEmbeds';
-export const setupButtonIds = ['btn_help_setup', 'btn_help_server_setup'];
+export const customId = ['btn_help_setup', 'btn_help_server_setup'];
 
 export const helpEmbed = new EmbedBuilder()
     .setColor('#3498DB')
@@ -40,21 +40,20 @@ export async function execute(interaction: ButtonInteraction) {
     const dbget = await db.query('SELECT setup_steps FROM server_configs WHERE guild_id = $1', [interaction.guildId]);
     const currentStep = dbget.rows[0].setup_steps;
     try {
-        if (currentStep === 1) {
+        if (currentStep === 0) {
             return await interaction.update({
                 embeds: [helpEmbed],
                 components: [backButtonRow]
             })
-        } else if (currentStep === 2){
+        } else if (currentStep === 1){
             return await interaction.update({
                 embeds: [helpGameIDEmbed],
                 components: [backServerButtonRow]
             })
         } else {
-            return await interaction.reply({
+            return await interaction.update({
                 content: 'Unexpected setup step. Please start the setup process again.',
-                components: [],
-                flags: [MessageFlags.Ephemeral]
+                components: []
             })
         }
     } catch (error) {

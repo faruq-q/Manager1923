@@ -2,13 +2,16 @@ import { ButtonInteraction, ChatInputCommandInteraction, Interaction, Events, Me
 import { customClient } from '../structures/CustomClient';
 export const name = Events.InteractionCreate;
 
-// Standardized error message string for internal reuse
+
 const errorMessage = '❌ There was an error while processing this request!';
 
-
-// Handles all incoming button interactions
 async function buttonHandler(interaction: ButtonInteraction, client: customClient) {
-    const button = client.buttons.get(interaction.customId);
+    const button = client.buttons.find((btn) => {
+        if (Array.isArray(btn.customId)) {
+            return btn.customId.includes(interaction.customId);
+        }
+        return btn.customId === interaction.customId;
+    });
     
     if (!button) {
         console.log(`⚠️ [BUTTON REJECTED] Clicked button was not found in client.buttons!`);
@@ -33,7 +36,6 @@ async function buttonHandler(interaction: ButtonInteraction, client: customClien
     }
 }
 
-// Handles all incoming slash command interactions
 async function slashCommandHandler(interaction: ChatInputCommandInteraction, client: customClient) {
     const command = client.commands.get(interaction.commandName);
 
@@ -59,7 +61,6 @@ async function slashCommandHandler(interaction: ChatInputCommandInteraction, cli
     }
 }
 
-// Handles all incoming modal submissions
 async function modalHandler(interaction: ModalSubmitInteraction, client: customClient) {
     const modal = client.modals.get(interaction.customId);
     
@@ -83,7 +84,6 @@ async function modalHandler(interaction: ModalSubmitInteraction, client: customC
     }
 }
 
-// Main event router for interactionCreate
 export async function execute(interaction: Interaction, client: customClient) {
     if (interaction.isChatInputCommand()) {
         return await slashCommandHandler(interaction, client);
