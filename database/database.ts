@@ -16,8 +16,8 @@ export interface ServerConfig {
     guild_id: string;
     setup_user_id: string;
     bot_name: string | null;
-    ea_sid: string;
-    ea_remid: string;
+    ea_sid: string | null;
+    ea_remid: string | null;
     game_id: string | null;
     server_name: string | null;
     vban_channel_id: string | null;
@@ -42,8 +42,8 @@ export async function initDatabase() {
             guild_id VARCHAR(30) PRIMARY KEY,
             setup_user_id VARCHAR(30) NOT NULL,
             bot_name VARCHAR(50) DEFAULT 'Manager1923',
-            ea_sid TEXT NOT NULL,
-            ea_remid TEXT NOT NULL,
+            ea_sid TEXT,
+            ea_remid TEXT,
             game_id VARCHAR(30),
             server_name VARCHAR(100),
             vban_channel_id VARCHAR(30),
