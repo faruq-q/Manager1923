@@ -28,5 +28,5 @@
 * if you want you can send Group and server logs to discord easily. 
 * about privacy / safety: all Tokens, sid/remid ids, and other things is storaging encrypted. noone is can read them. (I am included too).
 * Manager1923 | Battlefield 1 is have more many features. 
-* if you have a question or need a help about a think you can join discord.gg/VzKTc9XwHP and contact with me.
+* if you have a question or need a help about a think you can join [Manager1923 Discord Server](https://discord.gg/VzKTc9XwHP) and contact with me.
 * donates will use for more better hosts, etc..
