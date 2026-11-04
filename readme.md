@@ -18,6 +18,7 @@
    > 3. Admin: Admins have Vban, ban, kick permissions (actually same with ingame permission)
    > 4. Moderator: They only have kick permission. Moderators cant ban or vban players.
    > 5. Member: Just see live server informations. Playerlist, player count, current map etc.
+   
 > blacklist system is group based. If you add someone in blacklist and if you remove all ingame bans / vbans, blacklisted player still staying banned.
 > auto blacklist system with your selected reasons. (example: cheater reasoned bans > auto-ban enabled. and when any admin ban someone with cheater reason, players is automatically add in blacklist)
 > You can add evidence for bans. (not finished yet. probably you need enter an api key from imgbb when you are creating server) 
