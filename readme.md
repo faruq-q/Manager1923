@@ -1,13 +1,21 @@
 # Manager1923 | Battlefield 1 
 ## Battlefield 1 community server manager tool.
-## https://manager1923.wispbyte.org/  | Desktop app releases will publish in this project.
+## https://manager1923.wispbyte.org/  | Desktop app releases will publish in this repo.
 
 # IMPORTANT
 
 > all project is moved to private repo AND so close to finish.
-> project systems, files, paths is changed. Currently there is no interaction with discord for ban/kick or other things.
+
+> project systems, files, paths is changed. 
+
+> ~~Currently there is no interaction with discord for ban/kick or other things.~~
+
+> when its finished, API Docs file will shared in this repo.
+
 > Project is have a website and a desktop app (windows). 
+
 > Desktop app releases will publish in this project.
+
 
 ## Features
 * Group based management system.
