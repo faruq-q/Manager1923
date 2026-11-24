@@ -1,42 +1,72 @@
-# Manager1923 | Battlefield 1 
-## Battlefield 1 community server manager tool.
-## https://manager1923.wispbyte.org/  | Desktop app releases will publish in this repo.
+# Manager1923 - Battlefield 1
+### **Manager1923 - Battlefield 1** Tool is for ___advanced Server Managements___, Server Browser, Live Playerlist, Player Statistics and more!!
+___
+### FAQ:
+- Why it is not Open Source?
+  - Well, it is actually open source BUT i need be sure about not leaked any private key, api's (ea , bf1 and blaze api's), data or anything else. When i am sure about all of them, i will push files / codes.
+- Why am i need send application form?
+  - The Manager1923 - Battlefield 1 project is still in development, so I want know who is member because if someone try to attack i can detect it easily. Application system is will remove when system open sourced
 
-# IMPORTANT
+___
 
-> all project is moved to private repo AND so close to finish.
+## Why i am calling it _Advanced Server Management Tool_? 
 
-> project systems, files, paths is changed. 
+* ONLY KICK PERMISSION SYSTEM!!! _i will explain more detailed_
+* CHANGE ALL SERVER SETTINGS WITHOUT STARTING GAME!!!!!
+* TEMPORARY ADMIN AND VIP SYSTEM!!!!!
+* PLATOON SEARCH AND BAN SYSTEM!!!!
+* More stabile and fast vBan system
+* Evidence support while kick, ban, vBan, blacklist.
+* Custom and quick reasons for kick, ban, Vban.
+* Transfer all in-game bans to vBan easily!
+* Remove all bans / vbans. Also if you want you can unban just 1 specific reason bans!!
+* Templates for server settings!! You can return your old settings easily. 
+* Advanced Log System and Log support to Discord servers! 
+* Player History system.
+* and more!!
+___
 
-> ~~Currently there is no interaction with discord for ban/kick or other things.~~
+### Detailed explains:
+* Only kick permission system:
+  - Groups and servers have special roles system; 
 
-> when its finished, API Docs file will shared in this repo.
+| Roles   | Permission | More Detail |
+| --- | --- | --- |
+| Owner   | All Perms  | Groups can have 2 Owner | 
+| Manager | Manage Admins, Vips, Blacklist, Basic Server Settings | Kinda same with Owner but they have little differents |
+| Admin | Kick, Ban, vBan, change map, move player, etc. | same permissions with in-game admin. |
+| Moderator | Kick and Move player | They can see banlist, vbanlist etc.. but cant change |
+| Member | View Live Playerlist | This role mostly given when temporary admin finished. |
 
-> Project is have a website and a desktop app (windows). 
+* Temporary admin / vip system:
+  - If you add Time-Limited in-game admin / vip, system is automatically removing admin / vip from in-game when time expires.
+  - If you add Time-Limited in-system manager/admin/moderator, system is automatically change user role as to member when time expires.
 
-> Desktop app releases will publish in this project.
+* Platoon Search system:
+  - Normally [Original platoon companion site](https://companion.battlefield.com/companion/) is not allowing page system.
+  - But you can search and inspect more platoons page by page with Manager1923 Battlefield 1 tool. Also you can ban / vBan platoons and platoon members.
 
+| Comparison | Companion website | Manager1923 BF1 |
+| --- | --- | --- |
+| Platoon per Page | 10 | 10 |
+| is Page switching allowed? | NO | YES |
+| How Many platoon showing? | ONLY 10 | All Platoons Matching the Search Term |
+| See Platoon Members | YES | YES |
 
-## Features
-* Group based management system.
-* In-game ban, kick, moveplayer, change map, changing server settings etc.. features.
-* you can inspect / see all servers & servers live players.
-* vban, Cban (like bfeac / bfban) and blacklist system.
-* 5 different permission role. 
-   * 1- Owner: (you can set 1 member Owner with you [total 2 Owner in group or server]),
-   * 2- Manager: Managers can change other members role and manage blacklist,
-   * 3- Admin: Admins have Vban, ban, kick permissions (actually same with ingame permission)
-   * 4- Moderator: They only have kick permission. Moderators cant ban or vban players.
-   * 5- Member: Just see live server informations. Playerlist, player count, current map etc.
-   
-* blacklist system is group based. If you add someone in blacklist and if you remove all ingame bans / vbans, blacklisted player still staying banned.
-* auto blacklist system with your selected reasons. (example: cheater reasoned bans > auto-ban enabled. and when any admin ban someone with cheater reason, players is automatically add in blacklist)
-* You can add evidence for bans. (not finished yet. probably you need enter an api key from imgbb when you are creating server) 
-* about changing server setting: its not finished yet but when its finished you can change ingame server name, description, enable/disable vehicles / classes / weapons etc., set game duration / damage percent / vehicle spawn time percent etc.
-* You can set auto AFK kick time too!!!!!
-* You can set your server game mode to operations mode. (You need submit an application in group settings)
-* if you want you can send Group and server logs to discord easily. 
-* about privacy / safety / security: all Tokens, sid/remid ids, and other things is storaging encrypted. noone is can read them. (I am included too).
-* Manager1923 | Battlefield 1 is have more many features. 
-* if you have a question or need a help about a think you can join [Manager1923 Discord Server](https://discord.gg/VzKTc9XwHP) and contact with me.
-* donates will use for more better hosts, etc..
+___
+
+# AND MORE FEATURES! YOU CAN TRY!!
+
+> [!WARNING]
+> You need use Server Owner sid / remid cookies while creating group for use all features.
+>
+> You can also use in-game admin sid / remid cookies for kick, ban, vban, move player, change map etc but you cant access all server permissions (like some ingame server settings). This is not my problem, EA / Blaze is want Server Owner Auth for some process.
+>
+> For safety, do not play with system added account. Its not causing any problem yet but for safety i recommend the playing with different account. 
+
+> [!NOTE]
+> If you found a bug, or you have a problem / suggestion please join [manager1923 support server](https://discord.com/invite/VzKTc9XwHP) and create a ticket.
+>
+> You can donate this project. All donations will use for upgrade system.
+
+> discord: faruq_q | [Manager1923 Support Server](https://discord.com/invite/VzKTc9XwHP)
